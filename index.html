@@ -1,60 +1,104 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caramellat Doceria</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- Link para o CSS -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Caramellat Doceria</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <h1>Caramellat Doceria</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Início</a></li>
-                <li><a href="#">Produtos</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section class="banner">
-        <h2>Morangos do Amor Deliciosos!</h2>
-        <p>Ofertas especiais em morangos com chocolate. Não perca!</p>
+  <!-- Modal de localizaÃ§Ã£o -->
+  <div id="modal-location" class="modal">
+    <div class="modal-content">
+      <h2>Selecione seu Estado</h2>
+      <select id="select-estado"></select>
+      <h3>Selecione sua Cidade</h3>
+      <select id="select-cidade"></select>
+      <button id="btn-confirm-location">Confirmar</button>
+      <div id="loading" style="display:none;">Verificando regiÃ£o... Aguarde...</div>
+    </div>
+  </div>
+
+  <header>
+    <div class="logo">Caramellat Doceria</div>
+    <nav>
+      <ul>
+        <li><a href="#produtos">Produtos</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content" style="display:none;">
+
+    <section class="info-entrega" id="info-entrega">
+      <p>Entregamos em <span id="localizacao-confirmada"></span>!</p>
     </section>
 
-    <section class="produtos">
-        <h2>Produtos em Destaque</h2>
-        <!-- Produto 1: 3 Morangos do Amor -->
-        <div class="produto">
-            <img src="images/3_morangos.jpg" alt="Promoção de 3 Morangos do Amor">
-            <p>Promoção: 3 Morangos do Amor</p>
-            <p>R$ 29,90</p>
-        </div>
-        <!-- Produto 2: 4 Uvas do Amor -->
-        <div class="produto">
-            <img src="images/4_uvas.jpg" alt="Promoção de 4 Uvas do Amor">
-            <p>Promoção: 4 Uvas do Amor</p>
-            <p>R$ 39,90</p>
-        </div>
-        <!-- Produto 3: 6 Morangos do Amor -->
-        <div class="produto">
-            <img src="images/6_morangos.jpg" alt="Promoção de 6 Morangos do Amor">
-            <p>Promoção: 6 Morangos do Amor</p>
-            <p>R$ 49,90</p>
-        </div>
-        <!-- Produto 4: 12 Morangos e 4 Uvas -->
-        <div class="produto">
-            <img src="images/uvas_morangos.jpg" alt="Promoção de 12 Morangos e 4 Uvas">
-            <p>Promoção: 12 Morangos e 4 Uvas</p>
-            <p>R$ 69,90</p>
-        </div>
+    <section id="produtos" class="produtos-section">
+      <h2>Produtos em Destaque</h2>
+      <div class="carrossel" id="carrossel-produtos">
+        <!-- Produtos serÃ£o inseridos via JS -->
+      </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 Caramellat Doceria. Todos os direitos reservados.</p>
-    </footer>
+    <section id="carrinho" class="carrinho-section">
+      <h2>Seu Carrinho</h2>
+      <div id="lista-carrinho"></div>
+      <div class="total-carrinho">
+        Total: R$ <span id="total-carrinho">0,00</span>
+      </div>
+      <button id="btn-finalizar">Finalizar Pedido</button>
+    </section>
+
+    <section id="finalizar-pedido" class="finalizar-pedido-section" style="display:none;">
+      <h2>Finalize seu pedido</h2>
+      <form id="form-pedido">
+        <label>
+          Nome Completo:
+          <input type="text" name="nome" required />
+        </label>
+        <label>
+          Telefone:
+          <input type="tel" name="telefone" required />
+        </label>
+        <label>
+          EndereÃ§o:
+          <textarea name="endereco" required></textarea>
+        </label>
+        <button type="submit">Pagar com PagueX</button>
+      </form>
+      <button id="btn-voltar-carrinho">Voltar ao Carrinho</button>
+    </section>
+
+    <section id="depoimentos" class="depoimentos-section">
+      <h2>Depoimentos</h2>
+      <div class="lista-depoimentos">
+        <!-- Depoimentos fixos -->
+        <div class="depoimento">
+          <img src="images/depo1.jpg" alt="Cliente 1" />
+          <p>"Amei os morangos, super fresquinhos e saborosos!" - Ana</p>
+        </div>
+        <div class="depoimento">
+          <img src="images/depo2.jpg" alt="Cliente 2" />
+          <p>"Entrega rÃ¡pida e atendimento Ã³timo!" - Carlos</p>
+        </div>
+        <div class="depoimento">
+          <img src="images/depo3.jpg" alt="Cliente 3" />
+          <p>"Os chocolates sÃ£o deliciosos, recomendo!" - Mariana</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="contato">
+    <p>Contato: (62) 98176-1898 | Instagram: @caramellatdoceria</p>
+    <p>&copy; 2025 Caramellat Doceria. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
